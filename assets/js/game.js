@@ -13,6 +13,7 @@ var tidBit = ["The first disney park was opened in Anaheim on July 17, 1955","Th
 var totalCorrect = 0;
 var totalIncorrect = 0;
 var clearDiv = "";
+var timer;
 counter = 30;
 
 
@@ -46,7 +47,7 @@ function triviaStart(){
 
 function nextQuestion(){
 
-	setInterval(decrement, 1000);
+	timer = setInterval(decrement, 1000);
 	decrement();
 
 	var clearDiv = $('<span>').text("")
@@ -55,14 +56,14 @@ function nextQuestion(){
 	var divQ = $('<div>').text(questions[0]).addClass('div-q');
 	$('#main-container').append(divQ);
 
+	/* Need to figure out way to display divs in random order so the correct answer isnt at the top all the time
 	var divs = [];
 	for(var i = 0 ; i < 4 ; i++){
 		
 		divs.push(i)
 		var divs = [];
 	}
-	
-
+	*/
 	var divOne = $('<div>').text(correctAnswer[0]).addClass('div-one correct-Answer');
 	$('#main-container').append(divOne);
 
@@ -81,52 +82,147 @@ function nextQuestion(){
 	incorrectAnswerTwo.shift();
 	incorrectAnswerThree.shift();
 
+
+	// This section registers the users choice during the trivia
+
+
+
 	$('.correct-Answer').on('click', function(){
-
 	totalCorrect++;
-	nextQuestion();
-
+	// shows end screen if no more questions
 	if(questions[0] === undefined){
-		endScreen()
+		endScreen();
+	} else {
+		nextQuestion();
 	}
+	// NEED TO MAKE INTERMISSION SCREEN
+	// intermissionScreenCorrect();
+
+	clearInterval(timer);
+	$('#timer-div').html("<h1>30</h1>");
+	resetTimer();
 
 	});
+
+
 	$('.incorrect-Answer').on('click', function(){
 
 	totalIncorrect++;
-	nextQuestion();
-
 	if(questions[0] === undefined){
-		endScreen()
+
+	endScreen();
+	} else {
+		nextQuestion();
 	}
 
+	// NEED TO MAKE INTERMISSION SCREEN
+	// intermissionScreenIncorrect();
+
+	clearInterval(timer);
+	$('#timer-div').html("<h1>30</h1>");
+	resetTimer();
+
 	});
+
+
+
+
+
+	if (counter  === 0) {
+        totalIncorrect++;
+        clearInterval(timer);
+    }
+
 //function ends below (dont delete)
 }
 
+// Screen that gets renderd between questions when you anwer correctly
+function intermissionScreenCorrect(){
 
+
+}
+
+// Screen that gets renderd between questions when you anwer incorrectly
+function intermissionScreenIncorrect(){
+
+}
+
+// Screen that gets rendered when all the questions are through
+function endScreen(){
+
+	console.log('EndScreen Console.log');
+	clearInterval(timer);
+	$('#timer-div').html("");
+
+	var endGameCorrect = $('<h3>').addClass('end-game').text('Total Correct: ' + totalCorrect );
+	$('#main-container').html(endGameCorrect);
+
+	var endGameIncorrect = $('<h3>').addClass('end-game').text('Total Incorrect: ' + totalIncorrect );
+	$('#main-container').append(endGameIncorrect);
+
+	var restart = $('<h3>').addClass('restart').text('Click here to restart');
+	$('#main-container').append(restart);
+
+	// restart on click
+	$('.restart').on('click', function(){
+
+	restart();
+
+	});
+
+
+
+}
+
+// restarts the game after the end screen
+function restart(){
+
+	questions = ["What year did disneyland open","What was the name of Ariels daughter in 'The Middle Mermaid II'?","Put these princesses in correct order:","What was the first disney film that didnt star a princess?","Which one of these is not one of the 'Seven Dwarfs'?","How many Pixar films have been released since 1995?","What is the highest grossing Disney movie of all time?","What was the 1st Disney animation to be nominated for an Oscar best picture?"];
+	correctAnswer = ["1995","Meoldy","Snow White, Cinderella, Aurora, Ariel, Belle","Pinocchio","Mopey","15","Frozen","Beauty and The Beast"];
+	incorrectAnswerOne = ["1950","Harmony","Snow White, Aurora, Cinderella, Belle, Ariel","Fantasia","Happy","13","The Lion King","Snow White and the Seven Dwarfs"];
+ 	incorrectAnswerTwo = ["1963","Aria","Snow White, Cinderelle, Aurora, Belle, Ariel","Dumbo","Sneezy","14","Toy Story 2","The Lion King"];
+	incorrectAnswerThree = ["1970","Viola","Snow White, Cinderella, Belle, Aurora, Ariel","Bambi","Doc","16","Finding Nemo","Up"];
+ 	tidBit = ["The first disney park was opened in Anaheim on July 17, 1955","The Little Mermaid II: Return to Sea, released in 2000, told the story of Ariel and Eric's daughter Melody","Correct Order: Snow White (1937), Cinderella (1950), Aurora (1959), Ariel (1989), Belle (1991)","Pinocchio was released in 1940, 3 years after Snow White","There is no dwarf named Mopey","There have been 15 Pixar films released since Toy Story in 1995","In 2014 Frozen overtook Toy Story 3 as the highest grossing animated film of all time","Beauty and The Beast was the first animated movie to be nominated for best picture in 1992"];
+
+	totalCorrect = 0;
+	totalIncorrect = 0;
+	clearDiv = "";
+	timer;
+	counter = 30;	
+
+	triviaStart();
+
+}
+
+
+
+
+///////////////////////////////// TIMER THINGS ///////////////////////////////////////
+
+// Timer function
 function decrement(){
 	
     counter--;
-
-    if (counter  === 0) {
-        // Display a login box
-        clearInterval(decrement);
-    }
     
-    var timerDiv = $('<h3>').text(counter).addClass('timer-div');
+    if (counter  === 0) {
+        totalIncorrect++;
+        clearInterval(timer);
+        $('#timer-div').html("");
+
+    }
+    var timerDiv = $('<h1>').text(counter).addClass('timer-div');
 	$('#timer-div').html(timerDiv);
 	
 }
+// Timer Reset Function
+function resetTimer(){
 
-function endScreen(){
-	var endScreenClear = $('<div>').text("");
-	$('#main-container').html(endScreenClear);
-	var endScreenStats = $('p').text("Total Answers Correct :" )
-	$('#main-container').html(endScreenStats);
-
+	 clearInterval(timer);
+	 counter = 30;
+	 /*
+	 $('#timer-div').html("<h1>" + timerDiv + "</h1>");
+	 */
 }
-
 
 });
 

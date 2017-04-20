@@ -9,10 +9,6 @@
 	border: 1px solid;
 }
 
-.timer-div{
-	z-index: 2;
-}
-
 .div-q{
 	margin-top: 10%;
 	font-size: 24px;
@@ -32,5 +28,14 @@
 
 .div-four{
 	margin-top: 5%;
+}
+
+.end-game{
+	margin-top: 8%;
+	border: solid 1px;
+}
+
+.restart{
+	margin-top: 8%
 }
 
