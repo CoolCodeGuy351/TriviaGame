@@ -12,22 +12,19 @@ var tidBit = ["The first disney park was opened in Anaheim on July 17, 1955","Th
 
 var totalCorrect = 0;
 var totalIncorrect = 0;
-var counter = 30;
-
-
+var clearDiv = "";
+counter = 30;
 
 
 // Build Start Button
-var startButton = $('<h2>');
+var startButton = $('<h2>').addClass('start-button');
 startButton.text('Start').css({
-
 	"margin-top": "15%",
 	"min-width": "280px",
 	"min-height": "100px",
 	"display": "inline-block",
 	"border": "1px solid",
 	"padding-top": "28px"
-
 });
 // Render Start Button to Page
 $('#main-container').html(startButton);
@@ -38,40 +35,98 @@ $('.start-button').on('click', function(){
 
 	nextQuestion();
 
-
-
 });
-
-
 
 function triviaStart(){
 	totalCorrect = 0;
 	totalIncorrect =0;
 	$('#main-container').html(startButton);
-}
 
+}
 
 function nextQuestion(){
 
-	var timerDiv = $('<h3>').text(counter)
+	setInterval(decrement, 1000);
+	decrement();
+
+	var clearDiv = $('<span>').text("")
+	$('#main-container').html("");
+
+	var divQ = $('<div>').text(questions[0]).addClass('div-q');
+	$('#main-container').append(divQ);
+
+	var divs = [];
+	for(var i = 0 ; i < 4 ; i++){
+		
+		divs.push(i)
+		var divs = [];
+	}
+	
+
+	var divOne = $('<div>').text(correctAnswer[0]).addClass('div-one correct-Answer');
+	$('#main-container').append(divOne);
+
+	var divTwo = $('<div>').text(incorrectAnswerOne[0]).addClass('div-two incorrect-Answer');
+	$('#main-container').append(divTwo);incorrectAnswerOne
+
+	var divThree = $('<div>').text(incorrectAnswerTwo[0]).addClass('div-three incorrect-Answer');
+	$('#main-container').append(divThree);
+
+	var divFour = $('<div>').text(incorrectAnswerThree[0]).addClass('div-four incorrect-Answer');
+	$('#main-container').append(divFour);
+
+	questions.shift();
+	correctAnswer.shift();
+	incorrectAnswerOne.shift();
+	incorrectAnswerTwo.shift();
+	incorrectAnswerThree.shift();
+
+	$('.correct-Answer').on('click', function(){
+
+	totalCorrect++;
+	nextQuestion();
+
+	if(questions[0] === undefined){
+		endScreen()
+	}
+
+	});
+	$('.incorrect-Answer').on('click', function(){
+
+	totalIncorrect++;
+	nextQuestion();
+
+	if(questions[0] === undefined){
+		endScreen()
+	}
+
+	});
+//function ends below (dont delete)
 }
 
 
-	counter = 30;
-	// Countdown Timer
-	var interval = setInterval(function() {
+function decrement(){
+	
     counter--;
 
     if (counter  === 0) {
         // Display a login box
-        clearInterval(interval);
+        clearInterval(decrement);
     }
-}, 1000);
+    
+    var timerDiv = $('<h3>').text(counter).addClass('timer-div');
+	$('#timer-div').html(timerDiv);
+	
+}
 
+function endScreen(){
+	var endScreenClear = $('<div>').text("");
+	$('#main-container').html(endScreenClear);
+	var endScreenStats = $('p').text("Total Answers Correct :" )
+	$('#main-container').html(endScreenStats);
 
-
-
-
+}
 
 
 });
+

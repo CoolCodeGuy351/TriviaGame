@@ -9,3 +9,28 @@
 	border: 1px solid;
 }
 
+.timer-div{
+	z-index: 2;
+}
+
+.div-q{
+	margin-top: 10%;
+	font-size: 24px;
+}
+
+.div-one{
+	margin-top: 5%;
+}
+
+.div-two{
+	margin-top: 5%;
+}
+
+.div-three{
+	margin-top: 5%;
+}
+
+.div-four{
+	margin-top: 5%;
+}
+
