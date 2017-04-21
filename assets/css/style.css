@@ -1,16 +1,15 @@
 /* CSS and Bootstrap v4 */
 
 #top-container{
-	margin-top: 10%;
+	margin-top: 5%;
 }
 
 #main-container{
-	min-height: 500px;
-	border: 1px solid;
+	min-height: 400px;
 }
 
 .div-q{
-	margin-top: 10%;
+	margin-top: 5%;
 	font-size: 24px;
 }
 
@@ -31,11 +30,14 @@
 }
 
 .end-game{
-	margin-top: 8%;
-	border: solid 1px;
+	margin-top: 5%;
 }
 
 .restart{
-	margin-top: 8%
+	margin-top: 5%
+}
+
+.intermission-div{
+	
 }
 
