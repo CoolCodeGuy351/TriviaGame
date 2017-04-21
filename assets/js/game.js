@@ -205,7 +205,7 @@ function intermissionScreenCorrect(){
 
 	$('#timer-div').html("").css('visibility' , 'hidden');
 
-	var intermissionDiv = $('<div>').html("<h3>Correct!<br><br><br> Fun Fact: " + tidBit[0] + "</h3>").css("margin-top","15%").addClass('intermission-div');
+	var intermissionDiv = $('<div>').html("<h3>Correct!<br><br><br> Fun Fact:    " + tidBit[0] + "</h3>").css("margin-top","15%").addClass('intermission-div');
 	tidBit.shift();
 
 	$('#main-container').html(intermissionDiv);
@@ -236,7 +236,7 @@ function intermissionScreenIncorrect(){
 
 	$('#timer-div').html("").css('visibility' , 'hidden');
 
-	var intermissionDivWrong = $('<div>').html("<h3>Sorry you are incorrect!<br><br><br> Fun Fact: " + tidBit[0] + "</h3>").css("margin-top","15%").addClass('intermission-div');
+	var intermissionDivWrong = $('<div>').html("<h3>Sorry you are incorrect!<br><br><br> Fun Fact:    " + tidBit[0] + "</h3>").css("margin-top","15%").addClass('intermission-div');
 	tidBit.shift();
 
 	$('#main-container').html(intermissionDivWrong);
@@ -295,7 +295,7 @@ function restartGame(){
 	incorrectAnswerOne = ["1950","Harmony","Snow White, Aurora, Cinderella, Belle, Ariel","Fantasia","Happy","13","The Lion King","Snow White and the Seven Dwarfs"];
  	incorrectAnswerTwo = ["1963","Aria","Snow White, Cinderelle, Aurora, Belle, Ariel","Dumbo","Sneezy","14","Toy Story 2","The Lion King"];
 	incorrectAnswerThree = ["1970","Viola","Snow White, Cinderella, Belle, Aurora, Ariel","Bambi","Doc","16","Finding Nemo","Up"];
- 	tidBit = ["The first disney park was opened in Anaheim on July 17, 1955","The Little Mermaid II: Return to Sea, released in 2000, told the story of Ariel and Eric's daughter Melody","Correct Order: Snow White (1937), Cinderella (1950), Aurora (1959), Ariel (1989), Belle (1991)","Pinocchio was released in 1940, 3 years after Snow White","There is no dwarf named Mopey","There have been 15 Pixar films released since Toy Story in 1995","In 2014 Frozen overtook Toy Story 3 as the highest grossing animated film of all time","Beauty and The Beast was the first animated movie to be nominated for best picture in 1992"];
+ 	tidBit = ["The first disney park was opened in Anaheim on July 17, 1955","The Little Mermaid II: Return to Sea, released in 2000, told the story of Ariel and Eric's daughter Melody","- Correct Order - Snow White (1937), Cinderella (1950), Aurora (1959), Ariel (1989), Belle (1991)","Pinocchio was released in 1940, 3 years after Snow White","There is no dwarf named Mopey","There have been 15 Pixar films released since Toy Story in 1995","In 2014 Frozen overtook Toy Story 3 as the highest grossing animated film of all time","Beauty and The Beast was the first animated movie to be nominated for best picture in 1992"];
 
 	totalCorrect = 0;
 	totalIncorrect = 0;
